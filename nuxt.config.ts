@@ -6,6 +6,10 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
+  runtimeConfig: {
+    databaseUrl: process.env.DATABASE_URL,
+    databaseAuthToken: process.env.DATABASE_AUTH_TOKEN,
+  },
   nitro: {
     externals: {
       inline: ['drizzle-orm'],

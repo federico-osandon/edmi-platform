@@ -5,6 +5,7 @@ import bcrypt from 'bcryptjs'
 
 export default defineEventHandler(async (event) => {
     try {
+        console.log('Checking for existing admin...')
         // Check if super admin exists
         const [existingAdmin] = await db.select().from(users).where(eq(users.role, 'superadmin'))
 
@@ -12,6 +13,7 @@ export default defineEventHandler(async (event) => {
             return { message: 'Super admin already exists' }
         }
 
+        console.log('Creating super admin...')
         // Hash password
         const hashedPassword = await bcrypt.hash('pass0wrdD3lAdministr@dor', 10)
 
@@ -25,11 +27,11 @@ export default defineEventHandler(async (event) => {
         }).returning()
 
         return { message: 'Super admin created', user: admin }
-    } catch (error) {
+    } catch (error: any) {
+        console.error('Seed error:', error)
         throw createError({
             statusCode: 500,
-            statusMessage: 'Failed to seed database',
-            data: error
+            statusMessage: error?.message || 'Failed to seed database',
         })
     }
 })
