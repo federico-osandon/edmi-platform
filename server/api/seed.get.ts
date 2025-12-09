@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
         }
 
         // Hash password
-        const hashedPassword = await bcrypt.hash('admin', 10)
+        const hashedPassword = await bcrypt.hash('pass0wrdD3lAdministr@dor', 10)
 
         // Create super admin
         const [admin] = await db.insert(users).values({
