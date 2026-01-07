@@ -39,7 +39,7 @@ const handleRegister = async () => {
         </div>
         <div>
           <label class="block text-sm font-medium text-gray-300 mb-2">Contraseña</label>
-          <input v-model="password" type="password" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all" placeholder="••••••••" />
+          <input v-model="password" type="password" required minlength="6" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all" placeholder="••••••••" />
         </div>
         <div v-if="errorMsg" class="text-red-400 text-sm bg-red-900/20 p-3 rounded-lg">{{ errorMsg }}</div>
         <div v-if="successMsg" class="text-green-400 text-sm bg-green-900/20 p-3 rounded-lg">{{ successMsg }}</div>

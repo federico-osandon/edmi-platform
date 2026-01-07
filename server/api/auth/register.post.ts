@@ -9,8 +9,14 @@ export default defineEventHandler(async (event) => {
 
     if (!email || !password || !name) {
         throw createError({
-            statusCode: 400,
             statusMessage: 'Missing required fields'
+        })
+    }
+
+    if (password.length < 6) {
+        throw createError({
+            statusCode: 400,
+            statusMessage: 'Password must be at least 6 characters long'
         })
     }
 

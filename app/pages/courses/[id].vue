@@ -148,7 +148,7 @@ const openStudentsModal = () => {
 
         </div>
 
-        <div class="mt-8 grid gap-6 md:grid-cols-3">
+        <div v-if="course.isEnrolled || auth.isAdmin || auth.isSuperAdmin" class="mt-8 grid gap-6 md:grid-cols-3">
           <div class="col-span-2 bg-gray-900/50 border border-gray-700 rounded-xl p-6">
             <h2 class="text-xl font-semibold text-white mb-3">Detalles</h2>
             <div class="flex flex-col gap-3 text-gray-300">
