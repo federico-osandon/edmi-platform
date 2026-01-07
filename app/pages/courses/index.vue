@@ -22,7 +22,7 @@ const { data: courses } = await useFetch('/api/courses')
             Gestionar Usuarios
           </NuxtLink>
           <span class="text-sm text-gray-600">{{ auth.user?.name }}</span>
-          <button @click="auth.logout()" class="text-red-600 hover:text-red-800">Cerrar sesión</button>
+          <!-- <button @click="auth.logout()" class="text-red-600 hover:text-red-800">Cerrar sesión</button> -->
         </div>
       </div>
 

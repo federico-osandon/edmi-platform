@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import { useAuthStore } from '~/stores/auth'
+
+const auth = useAuthStore()
+
+const handleLogout = () => {
+  auth.logout()
+}
+</script>
+
 <template>
   <div class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white font-sans">
     <nav class="bg-gray-800/90 backdrop-blur-md border-b border-gray-700 sticky top-0 z-50">
@@ -6,12 +16,17 @@
           EDMI
         </NuxtLink>
         <div class="flex gap-6">
-          <NuxtLink to="/login" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-medium hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-            Iniciar Sesión
-          </NuxtLink>
-          <NuxtLink to="/register" class="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-full font-medium hover:from-green-600 hover:to-teal-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-            Registrarse
-          </NuxtLink>
+          <template v-if="!auth.isAuthenticated">
+            <NuxtLink to="/login" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-medium hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+              Iniciar Sesión
+            </NuxtLink>
+            <NuxtLink to="/register" class="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-full font-medium hover:from-green-600 hover:to-teal-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+              Registrarse
+            </NuxtLink>
+          </template>
+          <button v-else @click="handleLogout" class="px-6 py-3 bg-gradient-to-r from-red-500 to-pink-600 text-white rounded-full font-medium hover:from-red-600 hover:to-pink-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            Cerrar Sesión
+          </button>
         </div>
       </div>
     </nav>
